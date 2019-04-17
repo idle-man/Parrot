@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Parrot流量回放测试报告</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    
+<style type="text/css" media="screen">
+/* -- css div popup ------------------------------------------------------------------------ */
+.popup_window_small {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #ddd; /*#99CCFF;*/
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 10pt;
+    width: 250px;
+}
+.popup_window_middle {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #ddd; /*#99CCFF;*/
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 10pt;
+    width: 500px;
+}
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #ddd; /*#99CCFF;*/
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 10pt;
+    width: 900px;
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line .label {
+    font-size: 85%;
+    cursor: pointer;
+}
+#show_detail_line {
+    margin: 2em auto 1em auto;
+}
+#total_row  { font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 0em; }
+</style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+<script language="javascript" type="text/javascript">
+    output_list = Array();
+    /* level - 0:Pass; 1:Fail; 2:All */
+    function showCase(level) {
+        trs = document.getElementsByTagName("tr");
+        for (var i = 0; i < trs.length; i++) {
+            tr = trs[i];
+            id = tr.id;
+            if (id.substr(0,2) == 'ft') {
+                if (level < 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+            if (id.substr(0,2) == 'pt') {
+                if (level == 1) {
+                    tr.className = 'hiddenRow';
+                }
+                else {
+                    tr.className = '';
+                }
+            }
+        }
+    }
+    function showTestDetail(div_id){
+        var details_div = document.getElementById(div_id)
+        var displayState = details_div.style.display
+        // alert(displayState)
+        if (displayState != 'block' ) {
+            displayState = 'block'
+            details_div.style.display = 'block'
+        }
+        else {
+            details_div.style.display = 'none'
+        }
+    }
+    function html_escape(s) {
+        s = s.replace(/&/g,'&amp;');
+        s = s.replace(/</g,'&lt;');
+        s = s.replace(/>/g,'&gt;');
+        return s;
+    }
+</script>
+<div class="container">
+    <div class='heading'>
+<h1>Parrot流量回放测试报告</h1>
+<p><strong>Start-Time:</strong> 2019-04-10 16:34:25</p>
+<p><strong>End-Time:</strong> 2019-04-10 16:34:53</p>
+<p><strong>Status:</strong> <span class="text text-default">Total <strong>11</strong></span> <span class="text text-success">Pass <strong>3</strong></span> <span class="text text-danger">Fail <strong>8</strong></span></p>
+
+<p class='description'></p>
+</div>
+
+    
+<p id='show_detail_line'>
+    <span class="label label-default" onclick="showCase(2)">All</span>
+    <span class="label label-success" onclick="showCase(0)">Pass</span>
+    <span class="label label-danger" onclick="showCase(1)">Fail</span>
+</p>
+<table id='result_table' class="table">
+    <thead>
+        <tr id='header_row'>
+            <th>Test Case</td>
+            <th>Result</td>
+            <th>Status</td>
+            <th>Duration</td>
+            <th>Response</td>
+            <th>Detail</td>
+        </tr>
+    </thead>
+    <tbody>
+        
+<tr id='ft__case_1' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_1: /getX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_1_status')" >
+            pass</a>
+        <div id='div_ft__case_1_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_1_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_1_duration')" >
+            pass</a>
+        <div id='div_ft__case_1_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_1_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 5
+Replayed duration(ms): 34
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_1_response')" >
+            fail</a>
+        <div id='div_ft__case_1_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_1_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495716, &quot;sign&quot;: &quot;0f695ced6c62c222aeff150f25687009&quot;, &quot;token&quot;: &quot;qovb2CGh8JMNktBDfAlI0LdrxH4ERnwO&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885265, &quot;sign&quot;: &quot;0f695ced6c62c222aeff150f25687009&quot;, &quot;token&quot;: &quot;UJO9mlaDet3Ldfisky1gzMbXRo4VvFAB&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Diff: [&quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495716\&quot; to \&quot;1554885265\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_1_detail')" >
+            request</a>
+        <div id='div_ft__case_1_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_1_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_1
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /getX
+parameter: date=2019-04-15&amp;type=1&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=0f695ced6c62c222aeff150f25687009
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;token&quot;: &quot;1554885265107&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_2' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_2: /postX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_2_status')" >
+            pass</a>
+        <div id='div_ft__case_2_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_2_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_2_duration')" >
+            pass</a>
+        <div id='div_ft__case_2_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_2_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 16
+Replayed duration(ms): 8
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_2_response')" >
+            fail</a>
+        <div id='div_ft__case_2_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_2_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495718, &quot;sign&quot;: &quot;2ee7d2c1b2fa14265fad30040ad271b7&quot;, &quot;token&quot;: &quot;BoIdTEMaYkX1K9UnWR6AvLZlwf7tGbmV&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885267, &quot;sign&quot;: &quot;0f695ced6c62c222aeff150f25687009&quot;, &quot;token&quot;: &quot;2CDrVWRjwkhYEOQ7nvSd8Xsy46GbLxTM&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Diff: [&quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495718\&quot; to \&quot;1554885267\&quot;&quot;, &quot; * The value of \&quot;sign\&quot; was changed from \&quot;2ee7d2c1b2fa14265fad30040ad271b7\&quot; to \&quot;0f695ced6c62c222aeff150f25687009\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_2_detail')" >
+            request</a>
+        <div id='div_ft__case_2_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_2_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_2
+protocol: http
+method: post
+host: 127.0.0.1:8081
+url: /postX
+parameter: date=2019-03-25&amp;type=1&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=0f695ced6c62c222aeff150f25687009
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;, &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_3' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_3: /postX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_3_status')" >
+            pass</a>
+        <div id='div_ft__case_3_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_3_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_3_duration')" >
+            pass</a>
+        <div id='div_ft__case_3_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_3_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 8
+Replayed duration(ms): 10
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_3_response')" >
+            fail</a>
+        <div id='div_ft__case_3_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_3_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495719, &quot;sign&quot;: &quot;95413d0a44c1ca36dab2ea144ec96e23&quot;, &quot;token&quot;: &quot;64g1NSpWE8Q07lcTYUDmwVeaK9ZqbHCz&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 3, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 0, &quot;B&quot;: 2}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;skIxVhUMJL1Ql5zwDj8Gum0EAdFeS7&quot;, &quot;date&quot;: &quot;2019-03-25&quot;}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885268, &quot;sign&quot;: &quot;0f695ced6c62c222aeff150f25687009&quot;, &quot;token&quot;: &quot;ButPQSqZVlEHNWrFI96hOJkjcmaL28CM&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 3, &quot;C&quot;: 1, &quot;B&quot;: 0}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 3, &quot;C&quot;: 0, &quot;B&quot;: 0}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 0, &quot;B&quot;: 0}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;MeCEiolsakxSr86YRpzIbAuT7hGdZ1&quot;, &quot;date&quot;: &quot;2019-03-25&quot;}}
+Diff: [&quot; * The value of \&quot;data.tag\&quot; was changed from \&quot;skIxVhUMJL1Ql5zwDj8Gum0EAdFeS7\&quot; to \&quot;MeCEiolsakxSr86YRpzIbAuT7hGdZ1\&quot;&quot;, &quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495719\&quot; to \&quot;1554885268\&quot;&quot;, &quot; * The value of \&quot;data.list[0].levels.A\&quot; was changed from \&quot;2\&quot; to \&quot;3\&quot;&quot;, &quot; * The value of \&quot;data.list[0].levels.B\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[2].levels.A\&quot; was changed from \&quot;5\&quot; to \&quot;2\&quot;&quot;, &quot; * The value of \&quot;sign\&quot; was changed from \&quot;95413d0a44c1ca36dab2ea144ec96e23\&quot; to \&quot;0f695ced6c62c222aeff150f25687009\&quot;&quot;, &quot; * The value of \&quot;data.list[2].levels.B\&quot; was changed from \&quot;2\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.C\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.B\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[2].status[0]\&quot; was changed from \&quot;Available\&quot; to \&quot;Unknown\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_3_detail')" >
+            request</a>
+        <div id='div_ft__case_3_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_3_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_3
+protocol: http
+method: post
+host: 127.0.0.1:8081
+url: /postX
+parameter: date=2019-03-25&amp;type=2&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=0f695ced6c62c222aeff150f25687009
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;, &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_4' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_4: /getX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_4_status')" >
+            pass</a>
+        <div id='div_ft__case_4_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_4_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_4_duration')" >
+            pass</a>
+        <div id='div_ft__case_4_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_4_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 11
+Replayed duration(ms): 7
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_4_response')" >
+            fail</a>
+        <div id='div_ft__case_4_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_4_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495721, &quot;sign&quot;: &quot;23d1cad2e29ec5950d34e4e320187b4c&quot;, &quot;token&quot;: &quot;I3Kby0REwdNm6DkcWGBv25xlOo9suYPH&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 4, &quot;C&quot;: 0, &quot;B&quot;: 2}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 0, &quot;B&quot;: 2}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 1, &quot;B&quot;: 2}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;o2KBHvhJINXlwesmE3riuGdgjfMzp7&quot;, &quot;date&quot;: &quot;2019-03-25&quot;}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885273, &quot;sign&quot;: &quot;23d1cad2e29ec5950d34e4e320187b4c&quot;, &quot;token&quot;: &quot;4xWRsmcID96fTA2bn0t18MiPvV3zojEp&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 4, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 4, &quot;C&quot;: 0, &quot;B&quot;: 2}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;UvRqzf4g7WiFxDmrVEb9yaZloBOPQc&quot;, &quot;date&quot;: &quot;2019-04-15&quot;}}
+Diff: [&quot; * The value of \&quot;data.list[2].levels.A\&quot; was changed from \&quot;5\&quot; to \&quot;4\&quot;&quot;, &quot; * The value of \&quot;data.list[1].status[0]\&quot; was changed from \&quot;Unknown\&quot; to \&quot;Available\&quot;&quot;, &quot; * The value of \&quot;data.tag\&quot; was changed from \&quot;o2KBHvhJINXlwesmE3riuGdgjfMzp7\&quot; to \&quot;UvRqzf4g7WiFxDmrVEb9yaZloBOPQc\&quot;&quot;, &quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495721\&quot; to \&quot;1554885273\&quot;&quot;, &quot; * The value of \&quot;data.list[0].levels.B\&quot; was changed from \&quot;2\&quot; to \&quot;1\&quot;&quot;, &quot; * The value of \&quot;data.list[0].levels.C\&quot; was changed from \&quot;0\&quot; to \&quot;1\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.A\&quot; was changed from \&quot;5\&quot; to \&quot;2\&quot;&quot;, &quot; * The value of \&quot;data.list[2].levels.C\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.C\&quot; was changed from \&quot;0\&quot; to \&quot;1\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.B\&quot; was changed from \&quot;2\&quot; to \&quot;1\&quot;&quot;, &quot; * The value of \&quot;data.list[2].status[0]\&quot; was changed from \&quot;Busy\&quot; to \&quot;Unknown\&quot;&quot;, &quot; * The value of \&quot;data.date\&quot; was changed from \&quot;2019-03-25\&quot; to \&quot;2019-04-15\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_4_detail')" >
+            request</a>
+        <div id='div_ft__case_4_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_4_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_4
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /getX
+parameter: date=2019-04-15&amp;type=2&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=23d1cad2e29ec5950d34e4e320187b4c
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;token&quot;: &quot;1554885273572&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt__case_5' class='text text-success'>
+    <td class='text text-success'><div class='testcase'>__CASE_5: /random</div></td>
+    <td class='text text-success'><strong>pass</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_5_status')" >
+            pass</a>
+        <div id='div_pt__case_5_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_5_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_5_duration')" >
+            pass</a>
+        <div id='div_pt__case_5_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_5_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 4
+Replayed duration(ms): 6
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_5_response')" >
+            pass</a>
+        <div id='div_pt__case_5_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_5_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;message&quot;: &quot;Success&quot;, &quot;code&quot;: 200, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;int&quot;: 58249099064, &quot;to&quot;: &quot;ShangHai&quot;, &quot;bool&quot;: false, &quot;str&quot;: &quot;oNyxRuALiGk302zfhTFjtBpIYMecDPdq&quot;, &quot;date&quot;: &quot;2019-03-27 14:35:24&quot;, &quot;dict&quot;: {&quot;status&quot;: [&quot;Unknown&quot;], &quot;timestamp&quot;: 1553495724, &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 1, &quot;B&quot;: 0}, &quot;number&quot;: 121}}}
+Replayed response: {&quot;message&quot;: &quot;Success&quot;, &quot;code&quot;: 200, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;int&quot;: 76758288649, &quot;to&quot;: &quot;ShangHai&quot;, &quot;bool&quot;: true, &quot;str&quot;: &quot;rS6HP9JLyjGhTCX7EemR0AYI8QbVOpdu&quot;, &quot;date&quot;: &quot;2019-04-14 16:34:34&quot;, &quot;dict&quot;: {&quot;status&quot;: [&quot;Available&quot;], &quot;timestamp&quot;: 1554885275, &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 121}}}
+Diff: []
+select conf: []
+ignore conf:[&quot;timestamp&quot;, &quot;token&quot;]
+rule conf:{&quot;data&quot;: &quot;!= {}&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_5_detail')" >
+            request</a>
+        <div id='div_pt__case_5_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_5_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_5
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /random
+parameter: dividend=5
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt__case_6' class='text text-success'>
+    <td class='text text-success'><div class='testcase'>__CASE_6: /random</div></td>
+    <td class='text text-success'><strong>pass</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_6_status')" >
+            pass</a>
+        <div id='div_pt__case_6_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_6_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_6_duration')" >
+            pass</a>
+        <div id='div_pt__case_6_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_6_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 5
+Replayed duration(ms): 11
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_6_response')" >
+            pass</a>
+        <div id='div_pt__case_6_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_6_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;message&quot;: &quot;Success&quot;, &quot;code&quot;: 200, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;int&quot;: 38442027830, &quot;to&quot;: &quot;ShangHai&quot;, &quot;bool&quot;: false, &quot;str&quot;: &quot;lUhSKFB6OWkQCLpfo3sGxDzuPbTg12Ea&quot;, &quot;date&quot;: &quot;2019-04-03 14:35:27&quot;, &quot;dict&quot;: {&quot;status&quot;: [&quot;Unknown&quot;], &quot;timestamp&quot;: 1553495727, &quot;levels&quot;: {&quot;A&quot;: 3, &quot;C&quot;: 0, &quot;B&quot;: 0}, &quot;number&quot;: 121}}}
+Replayed response: {&quot;message&quot;: &quot;Success&quot;, &quot;code&quot;: 200, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;int&quot;: 62312351218, &quot;to&quot;: &quot;ShangHai&quot;, &quot;bool&quot;: true, &quot;str&quot;: &quot;8uUiA14jpbQ2SPfshBLKFlC5IzctJeDX&quot;, &quot;date&quot;: &quot;2019-04-15 16:34:39&quot;, &quot;dict&quot;: {&quot;status&quot;: [&quot;Unknown&quot;], &quot;timestamp&quot;: 1554885280, &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 1, &quot;B&quot;: 0}, &quot;number&quot;: 121}}}
+Diff: []
+select conf: []
+ignore conf:[&quot;timestamp&quot;, &quot;token&quot;]
+rule conf:{&quot;data&quot;: &quot;!= {}&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_6_detail')" >
+            request</a>
+        <div id='div_pt__case_6_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_6_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_6
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /random
+parameter: dividend=5
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='pt__case_7' class='text text-success'>
+    <td class='text text-success'><div class='testcase'>__CASE_7: /random</div></td>
+    <td class='text text-success'><strong>pass</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_7_status')" >
+            pass</a>
+        <div id='div_pt__case_7_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_7_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_7_duration')" >
+            pass</a>
+        <div id='div_pt__case_7_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_7_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 5
+Replayed duration(ms): 3
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_7_response')" >
+            pass</a>
+        <div id='div_pt__case_7_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_7_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;message&quot;: &quot;Success&quot;, &quot;code&quot;: 200, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;int&quot;: 96445063724, &quot;to&quot;: &quot;ShangHai&quot;, &quot;bool&quot;: true, &quot;str&quot;: &quot;JBQLfjG2RMSTmslDNPqAkobZXwVeug0n&quot;, &quot;date&quot;: &quot;2019-03-28 14:35:29&quot;, &quot;dict&quot;: {&quot;status&quot;: [&quot;Busy&quot;], &quot;timestamp&quot;: 1553495730, &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 121}}}
+Replayed response: {&quot;message&quot;: &quot;Success&quot;, &quot;code&quot;: 200, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;int&quot;: 94021357348, &quot;to&quot;: &quot;ShangHai&quot;, &quot;bool&quot;: true, &quot;str&quot;: &quot;MKG9Dqowd58mnTOW4213tXurfjk7F0eV&quot;, &quot;date&quot;: &quot;2019-04-16 16:34:44&quot;, &quot;dict&quot;: {&quot;status&quot;: [&quot;Available&quot;], &quot;timestamp&quot;: 1554885285, &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 1, &quot;B&quot;: 2}, &quot;number&quot;: 121}}}
+Diff: []
+select conf: []
+ignore conf:[&quot;timestamp&quot;, &quot;token&quot;]
+rule conf:{&quot;data&quot;: &quot;!= {}&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_pt__case_7_detail')" >
+            request</a>
+        <div id='div_pt__case_7_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_pt__case_7_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_7
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /random
+parameter: dividend=5
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_8' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_8: /getX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_8_status')" >
+            pass</a>
+        <div id='div_ft__case_8_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_8_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_8_duration')" >
+            pass</a>
+        <div id='div_ft__case_8_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_8_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 7
+Replayed duration(ms): 4
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_8_response')" >
+            fail</a>
+        <div id='div_ft__case_8_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_8_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495732, &quot;sign&quot;: &quot;08dbae447debc43c164b6cd6923c112c&quot;, &quot;token&quot;: &quot;6A9hOrH4lIRGxp75bK0WuMCfoLgaeJSP&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 4, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 3, &quot;C&quot;: 0, &quot;B&quot;: 0}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;4YfcTPHJELyGlB3xks7pojat2U85mM&quot;, &quot;date&quot;: &quot;2019-03-25&quot;}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885287, &quot;sign&quot;: &quot;08dbae447debc43c164b6cd6923c112c&quot;, &quot;token&quot;: &quot;YO6v3ARyDShQNJgZHVIlPsqcmwdGFujk&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 4, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;YVypw6dsfCI71rav3keZgA92QJ5lL4&quot;, &quot;date&quot;: &quot;2019-04-15&quot;}}
+Diff: [&quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495732\&quot; to \&quot;1554885287\&quot;&quot;, &quot; * \&quot;data\&quot;:  \&quot;{u'from': u'SuZhou', u'list': [{u'status': [u'Unknown'], u'levels': {u'A': 4, u'C': 0, u'B': 1}, u'number': 121, u'time': u'07:00'}, {u'status': [u'Unknown'], u'levels': {u'A': 2, u'C': 0, u'B': 1}, u'number': 122, u'time': u'08:30'}, {u'status': [u'Unknown'], u'levels': {u'A': 2, u'C': 0, u'B': 1}, u'number': 123, u'time': u'10:15'}], u'userid': u'083e29e59c0b257813af7cb454b1e0e9', u'to': u'ShangHai', u'tag': u'YVypw6dsfCI71rav3keZgA92QJ5lL4', u'date': u'2019-04-15'}\&quot; does not match the rule: \&quot;== {}\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;sign&quot;, &quot;token&quot;]
+rule conf:{&quot;data&quot;: &quot;== {}&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_8_detail')" >
+            request</a>
+        <div id='div_ft__case_8_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_8_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_8
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /getX
+parameter: date=2019-04-15&amp;type=2&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=08dbae447debc43c164b6cd6923c112c
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;token&quot;: &quot;1554885287288&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_9' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_9: /postX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_9_status')" >
+            pass</a>
+        <div id='div_ft__case_9_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_9_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_9_duration')" >
+            pass</a>
+        <div id='div_ft__case_9_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_9_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 6
+Replayed duration(ms): 4
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_9_response')" >
+            fail</a>
+        <div id='div_ft__case_9_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_9_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495733, &quot;sign&quot;: &quot;f58a0920bb2ac07af24ceeed5e593ee7&quot;, &quot;token&quot;: &quot;FcH6CtAEQM8ygu3Vz2vr41sWT5SxofLU&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 1, &quot;B&quot;: 1}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Unknown&quot;], &quot;levels&quot;: {&quot;A&quot;: 3, &quot;C&quot;: 1, &quot;B&quot;: 0}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;qceYJIgQ690Fad8TUvlrHfBxohS1jD&quot;, &quot;date&quot;: &quot;2019-03-25&quot;}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885289, &quot;sign&quot;: &quot;08dbae447debc43c164b6cd6923c112c&quot;, &quot;token&quot;: &quot;0mOZb6lR7rgHwsNtXVTG3U8EiYWxfLJM&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {&quot;from&quot;: &quot;SuZhou&quot;, &quot;userid&quot;: &quot;083e29e59c0b257813af7cb454b1e0e9&quot;, &quot;list&quot;: [{&quot;status&quot;: [&quot;Busy&quot;], &quot;levels&quot;: {&quot;A&quot;: 2, &quot;C&quot;: 1, &quot;B&quot;: 0}, &quot;number&quot;: 121, &quot;time&quot;: &quot;07:00&quot;}, {&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 4, &quot;C&quot;: 0, &quot;B&quot;: 1}, &quot;number&quot;: 122, &quot;time&quot;: &quot;08:30&quot;}, {&quot;status&quot;: [&quot;Available&quot;], &quot;levels&quot;: {&quot;A&quot;: 5, &quot;C&quot;: 0, &quot;B&quot;: 0}, &quot;number&quot;: 123, &quot;time&quot;: &quot;10:15&quot;}], &quot;to&quot;: &quot;ShangHai&quot;, &quot;tag&quot;: &quot;HJhFCBE5YSd9UI8KR3yjibeVgDZ1LT&quot;, &quot;date&quot;: &quot;2019-03-25&quot;}}
+Diff: [&quot; * The value of \&quot;data.list[1].status[0]\&quot; was changed from \&quot;Busy\&quot; to \&quot;Available\&quot;&quot;, &quot; * The value of \&quot;data.tag\&quot; was changed from \&quot;qceYJIgQ690Fad8TUvlrHfBxohS1jD\&quot; to \&quot;HJhFCBE5YSd9UI8KR3yjibeVgDZ1LT\&quot;&quot;, &quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495733\&quot; to \&quot;1554885289\&quot;&quot;, &quot; * The value of \&quot;data.list[0].levels.B\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[0].status[0]\&quot; was changed from \&quot;Available\&quot; to \&quot;Busy\&quot;&quot;, &quot; * The value of \&quot;sign\&quot; was changed from \&quot;f58a0920bb2ac07af24ceeed5e593ee7\&quot; to \&quot;08dbae447debc43c164b6cd6923c112c\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.A\&quot; was changed from \&quot;2\&quot; to \&quot;4\&quot;&quot;, &quot; * The value of \&quot;data.list[2].levels.C\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[1].levels.C\&quot; was changed from \&quot;1\&quot; to \&quot;0\&quot;&quot;, &quot; * The value of \&quot;data.list[2].levels.A\&quot; was changed from \&quot;3\&quot; to \&quot;5\&quot;&quot;, &quot; * The value of \&quot;data.list[2].status[0]\&quot; was changed from \&quot;Unknown\&quot; to \&quot;Available\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_9_detail')" >
+            request</a>
+        <div id='div_ft__case_9_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_9_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_9
+protocol: http
+method: post
+host: 127.0.0.1:8081
+url: /postX
+parameter: date=2019-03-25&amp;type=2&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=08dbae447debc43c164b6cd6923c112c
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;token&quot;: &quot;4xWRsmcID96fTA2bn0t18MiPvV3zojEp&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;, &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_10' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_10: /getX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_10_status')" >
+            pass</a>
+        <div id='div_ft__case_10_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_10_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_10_duration')" >
+            pass</a>
+        <div id='div_ft__case_10_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_10_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 5
+Replayed duration(ms): 6
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_10_response')" >
+            fail</a>
+        <div id='div_ft__case_10_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_10_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495736, &quot;sign&quot;: &quot;6cba86f83ef0b8a5b25d6d00e614ed16&quot;, &quot;token&quot;: &quot;VkrnuH8G31lBhDOwJydUbZ4YfT7zRoC2&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885293, &quot;sign&quot;: &quot;6cba86f83ef0b8a5b25d6d00e614ed16&quot;, &quot;token&quot;: &quot;87Buemg9bjQXsJCNHoZVx4Yvyzwn2ORG&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Diff: [&quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495736\&quot; to \&quot;1554885293\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_10_detail')" >
+            request</a>
+        <div id='div_ft__case_10_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_10_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_10
+protocol: http
+method: get
+host: 127.0.0.1:8081
+url: /getX
+parameter: date=2019-04-15&amp;type=1&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=6cba86f83ef0b8a5b25d6d00e614ed16
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;token&quot;: &quot;1554885293828&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+<tr id='ft__case_11' class='text text-danger'>
+    <td class='text text-danger'><div class='testcase'>__CASE_11: /postX</div></td>
+    <td class='text text-danger'><strong>fail</strong></td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_11_status')" >
+            pass</a>
+        <div id='div_ft__case_11_status' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_11_status').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded status: 200
+Replayed status: 200
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-success' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_11_duration')" >
+            pass</a>
+        <div id='div_ft__case_11_duration' class="popup_window_small">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_11_duration').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded duration(ms): 7
+Replayed duration(ms): 15
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a style='width: 40px' class='popup_link btn btn-xs btn-danger' onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_11_response')" >
+            fail</a>
+        <div id='div_ft__case_11_response' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_11_response').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+Recorded response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1553495737, &quot;sign&quot;: &quot;c5dda7b0b692d543226a6e50990d4af5&quot;, &quot;token&quot;: &quot;MbcZ34fDNUwXP9LHhQtgp6m810slRrBK&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Replayed response: {&quot;code&quot;: 200, &quot;timestamp&quot;: 1554885293, &quot;sign&quot;: &quot;6cba86f83ef0b8a5b25d6d00e614ed16&quot;, &quot;token&quot;: &quot;aAo063twDMl1FTR7ufxGkydZvX4sIqm9&quot;, &quot;message&quot;: &quot;Success&quot;, &quot;data&quot;: {}}
+Diff: [&quot; * The value of \&quot;timestamp\&quot; was changed from \&quot;1553495737\&quot; to \&quot;1554885293\&quot;&quot;, &quot; * The value of \&quot;sign\&quot; was changed from \&quot;c5dda7b0b692d543226a6e50990d4af5\&quot; to \&quot;6cba86f83ef0b8a5b25d6d00e614ed16\&quot;&quot;]
+select conf: []
+ignore conf:[&quot;token&quot;]
+rule conf:{}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+    <td>
+        <!--css div popup start-->
+        <a class="popup_link btn btn-xs btn-primary" onfocus='this.blur();' href="javascript:showTestDetail('div_ft__case_11_detail')" >
+            request</a>
+        <div id='div_ft__case_11_detail' class="popup_window_middle">
+            <div style='text-align: right;cursor:pointer'>
+            <a onfocus='this.blur();' onclick="document.getElementById('div_ft__case_11_detail').style.display = 'none' " >
+               [x]</a>
+            </div>
+            <pre>
+id: __CASE_11
+protocol: http
+method: post
+host: 127.0.0.1:8081
+url: /postX
+parameter: date=2019-03-25&amp;type=1&amp;userid=083e29e59c0b257813af7cb454b1e0e9&amp;sign=6cba86f83ef0b8a5b25d6d00e614ed16
+header:{&quot;Accept-Language&quot;: &quot;zh-CN,en-US;q=0.9&quot;, &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;, &quot;token&quot;: &quot;4xWRsmcID96fTA2bn0t18MiPvV3zojEp&quot;, &quot;Accept&quot;: &quot;*/*&quot;, &quot;User-Agent&quot;: &quot;Mozilla/5.0 (Linux; Android 9; MIX 2S Build/PKQ1.180729.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36 MMWEBID/7049 MicroMessenger/7.0.3.1400(0x2700033B) Process/tools NetType/WIFI Language/zh_CN&quot;, &quot;Connection&quot;: &quot;keep-alive&quot;, &quot;X-Requested-With&quot;: &quot;XMLHttpRequest&quot;, &quot;Content-Type&quot;: &quot;application/x-www-form-urlencoded; charset=UTF-8&quot;}
+            </pre>
+        </div>
+        <!--css div popup end-->
+    </td>
+</tr>
+
+    </tbody>
+    <tfoot>
+        <tr id='total_row'>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </tfoot>
+</table>
+
+    <div id='ending'>&nbsp;</div>
+</div>
+</body>
+</html>
