@@ -75,12 +75,19 @@ def diff_ini(file1, file2):
         status_ret = {}
         resp_ret = {}
         logger.info("Check this request: " + t_id)
-        s_id = re.findall(r"(.+) \w+$", t_id)[0]  # target id contains source id
+        s_id = re.findall(r"(.+) \S+$", t_id)[0]  # target id contains source id
         if s_id in ini_dict1.keys():
             s_dict = ini_dict1[s_id]
         else:
-            logger.warn(" ** Source data is not found, ignore..")
-            continue
+            flag = 0
+            for x_id in ini_dict1.keys():
+                if re.match(r"^" + s_id + " \S+$", x_id):
+                    s_dict = ini_dict1[x_id]
+                    flag = 1
+                    break
+            if not flag:
+                logger.warn(" ** Source data is not found, ignore..")
+                continue
 
         # 部分select/ignore/rule配置可能是单独针对个别api的，先做一遍筛选
         i_select = []

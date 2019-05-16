@@ -162,6 +162,9 @@ class MyConfigHelper:
             select_list = self.record_select_list
             ignore_list = self.record_ignore_list
 
+        self.logger.debug("select list: %s" % json.dumps(select_list, ensure_ascii=False))
+        self.logger.debug("ignore list: %s" % json.dumps(ignore_list, ensure_ascii=False))
+
         # 先匹配host，完整匹配
         if len(select_list['host']) > 0 and the_dict['host'] not in select_list['host']:
             return False
@@ -177,7 +180,7 @@ class MyConfigHelper:
         # 再匹配url，局部匹配
         if len(select_list['url']) > 0:
             for select_req in select_list['url']:
-                if re.match(r"[\/]?" + select_req + "[\/|\?]?.*", the_dict['url']):
+                if re.search(r"[\/]?" + select_req + "[\/|\?]?.*", the_dict['url']):
                     return True
             return False  # 定义了select，但都未匹配到，则可理解为需要忽略
         if len(ignore_list['url']) > 0:
@@ -539,7 +542,7 @@ class MyIniHelper:
         for k1 in sec:
             cfg_dic[summary].append(k1)
             op = cp.options(k1)
-            cfg_dic[k1.lower()] = {}
+            cfg_dic[k1.strip()] = {}
             for k2 in op:
                 val = cp.get(k1, k2)
                 # print k1, k2, val

@@ -122,6 +122,10 @@ def run_ini(in_file, out_file):
         exit()
 
     run_type = int(config.replay_type)  # 1-串行, 2-多进程, 3-多线程
+
+    if nowait:  # 如果指定了nowait，则自动启动多进程模式
+        run_type = 2
+
     if run_type == 2:
         pool = Pool(processes=5)  # 创建进程池，定义最大并发进程数
 
@@ -138,14 +142,17 @@ def run_ini(in_file, out_file):
         if global_interval == 0:  # 计算历史时间间隔
             global_interval = (begin_time_now - my_time_old) / 1000.0 if begin_time_now > my_time_old else default_interval
 
-        # 根据历史时间间隔，判断是否到了执行时间
-        # 如果此前执行过程中有了额外的wait，需要纳入后续的时间间隔中
-        if global_interval + config.replay_wait > req_interval:
-            logger.info("Need to wait %.3f seconds" % (global_interval + config.replay_wait - req_interval))
-            sleep(global_interval + config.replay_wait - req_interval)
-        else:  # 默认做极短的sleep
+        if nowait:  # 如果指定了nowait，则只做极短的sleep
             sleep(default_interval)
-            config.replay_wait += default_interval
+        else:
+            # 根据历史时间间隔，判断是否到了执行时间
+            # 如果此前执行过程中有了额外的wait，需要纳入后续的时间间隔中
+            if global_interval + config.replay_wait > req_interval:
+                logger.info("Need to wait %.3f seconds" % (global_interval + config.replay_wait - req_interval))
+                sleep(global_interval + config.replay_wait - req_interval)
+            else:  # 默认做极短的sleep
+                sleep(default_interval)
+                config.replay_wait += default_interval
 
         if run_type == 2:  # 多进程方式
             pool.apply_async(func=run_http_req, args=(req_id, req_dict[req_id]))
@@ -219,9 +226,12 @@ if __name__ == '__main__':
     p_conf = ''
     y_file = ''
     debug = 0
+    nowait = 0
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hdi:o:r:c:y:", ["help", "debug", "input=", "output=", "rate=", "config=", "yaml="])
+        opts, args = getopt.getopt(sys.argv[1:],
+                                   "hdi:o:r:c:y:",
+                                   ["help", "debug", "input=", "output=", "rate=", "config=", "yaml=", "nowait"])
         for opt, value in opts:
             if opt in ('-h', '--help'):
                 usage()
@@ -237,6 +247,8 @@ if __name__ == '__main__':
                 p_conf = value.strip()
             elif opt in ('-y', '--yaml'):
                 y_file = value.strip()
+            elif opt == '--nowait':
+                nowait = 1
             else:
                 usage()
     except GetoptError:

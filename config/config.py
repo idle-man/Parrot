@@ -12,8 +12,7 @@ import json
 """
 特别声明：
     * 请不要随意修改下方的结构和所有变量名、数据类型
-    * 使用中可复制default_conf完整字典，粘贴到下方段落并重新命名（包含_conf后缀，例如：test_conf）
-    * 之后，test_conf中的值需要结合自己项目的实际情况进行修改
+    * 项目级配置请参考template.yaml和demo.yaml创建自己的.yaml文件
 """
 
 # 全局通用配置，和项目完全无关
@@ -34,7 +33,7 @@ global_conf = {
     }
 }
 
-# 项目级配置模板，请不要修改；可基于此复制自己的项目配置(例如test_conf)，在自己的配置上进行修改
+# 项目级配置模板，已弃用，请转到template.yaml、demo.yaml
 default_conf = {
     'record': {  # Step 1 - 录制阶段配置
         'select': {  # 若填写非空，则录制时仅选取匹配列表的流量，其余会被忽略
@@ -129,6 +128,4 @@ default_conf = {
 
 if __name__ == '__main__':
     pass
-    print json.dumps(default_conf)
-
 
